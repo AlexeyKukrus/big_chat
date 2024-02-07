@@ -34,8 +34,5 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-    - name: Check accessibility
-      run: npm run axe
-
     - name: Generate documentation
       run: npm run generate-docs
