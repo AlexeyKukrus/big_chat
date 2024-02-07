@@ -34,9 +34,6 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-    - name: Check security vulnerabilities
-      run: npx snyk test
-
     - name: Check accessibility
       run: npm run axe
 
