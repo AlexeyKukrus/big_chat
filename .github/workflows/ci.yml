@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+    - name: Run linter and Prettier
+      run: npm run lint
+
+    - name: Run Codecov
+      run: npm run codecov
+
+    - name: Check security vulnerabilities
+      run: npx snyk test
+
+    - name: Check accessibility
+      run: npm run axe
+
+    - name: Generate documentation
+      run: npm run generate-docs
