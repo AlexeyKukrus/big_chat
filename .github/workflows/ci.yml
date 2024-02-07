@@ -29,8 +29,10 @@ jobs:
     - name: Run linter and Prettier
       run: npm run lint
 
-    - name: Run Codecov
-      run: npm run codecov
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Check security vulnerabilities
       run: npx snyk test
